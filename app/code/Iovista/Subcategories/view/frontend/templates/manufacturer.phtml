@@ -1,0 +1,14 @@
+
+<?php
+$categoryObj = $block->getCurrentCategory();
+$subcategories = $categoryObj->getCategories($categoryObj->getId());
+?>
+
+<ul class="subcategories">
+<li><h3>Manufacturer</h3></a>
+    <?php foreach ($subcategories as $subcat): ?>
+    <li class="sub-category">
+        <a href="<?=/* @noEscape */ $subcat->getUrl() ?>"><?=/* @noEscape */ $subcat->getName() ?></a>
+    </li>    
+    <?php endforeach; ?>
+</ul>

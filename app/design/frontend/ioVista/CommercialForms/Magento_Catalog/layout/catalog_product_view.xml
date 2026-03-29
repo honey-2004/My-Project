@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page layout="1column" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="Magento_PageBuilder::js/resource/slick/slick.css"/>
+    </head>
+	<body>
+        <referenceBlock name="reviews.tab" remove="true"/>
+        <referenceBlock name="view.addto.wishlist" remove="true"/>
+        <referenceBlock name="view.addto.compare" remove="true"/>
+        <referenceBlock name="product.info.sku" remove="true"/>
+        <referenceBlock name="product.info.upsell" remove="true"/>
+
+        <move element="product.info.overview" destination="product.info.main" after="product.info.review"/>
+
+        <referenceBlock name="product.info.description">
+            <arguments>
+                <argument name="title" xsi:type="string">Product Description</argument>
+            </arguments>
+        </referenceBlock>
+
+        <!-- Add review list after related products -->
+        <referenceContainer name="content.aside">
+            <block class="Magento\Review\Block\Product\View\ListView" name="custom.product.review.list" template="Magento_Review::product/view/list.phtml" after="catalog.product.related"/>
+            <block class="Magento\Review\Block\Form" name="custom.product.review.form" template="Magento_Review::form.phtml" after="custom.product.review.list"/>
+        </referenceContainer>
+
+        <referenceBlock name="catalog.product.related">
+            <block class="Magento\Framework\View\Element\RendererList" name="catalog.product.related.details.renderers" as="details.renderers">
+                <block class="Magento\Framework\View\Element\Template" name="simple.related.renderer" as="simple"/>
+                <block class="Magento\Framework\View\Element\Template" name="default.related.renderer" as="default"/>
+                <block class="Magento\Swatches\Block\Product\Renderer\Listing\Configurable" name="configurable.related.swatch.renderer" as="configurable" template="Magento_Swatches::product/listing/renderer.phtml">
+                    <arguments>
+                        <argument name="configurable_view_model" xsi:type="object">Magento\Swatches\ViewModel\Product\Renderer\Configurable</argument>
+                    </arguments>
+                </block>
+            </block>
+        </referenceBlock>
+    </body>
+</page>

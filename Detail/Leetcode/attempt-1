@@ -1,0 +1,165 @@
+Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.
+You may assume that each input would have exactly one solution, and you may not use the same element twice.
+You can return the answer in any order.
+
+class Solution {
+
+    /**
+     * @param Integer[] $nums
+     * @param Integer $target
+     * @return Integer[]
+     */
+
+    function twoSum($nums, $target) {
+    $hashTable = [];
+
+    foreach ($nums as $i => $num) {
+        $complement = $target - $num;
+
+        if (array_key_exists($complement, $hashTable)) {
+            // Found the pair, return the indices
+            return [$hashTable[$complement], $i];
+        }
+
+        // Store the current element in the hash table
+        $hashTable[$num] = $i;
+    }
+
+    // No solution found
+    return [];
+}}
+
+Example 1:
+
+Input: nums = [2,7,11,15], target = 9
+Output: [0,1]
+Explanation: Because nums[0] + nums[1] == 9, we return [0, 1].
+
+function twosum($nums,$target){
+	$hashTable=[];
+	
+	--------------------------------case-1
+
+	foreach($nums as $i=> $num){
+		$comp=9-2	//$comp=7
+		if(array_key_exists(7,$hashTable)){
+			return[$hashTable[7],1];
+		}
+
+		$hashTable[7]=1;
+	}
+
+	--------------------------------case-2
+
+	foreach($nums as $i=> $num){
+		$comp=9-7	//$comp=2
+		if(array_key_exists(2,$hashTable)){
+			return[$hashTable[2],0];
+		}
+
+		$hashTable[2]=0;
+	}
+
+	--------------------------------case-3
+
+	foreach($nums as $i=> $num){
+		$comp=9-11	//$comp= -3 is not exist in array
+		if(array_key_exists(2,$hashTable)){
+			return[$hashTable[2],0];
+		}
+
+		$hashTable[2]=0;
+	}
+
+	--------------------------------case-4
+
+	foreach($nums as $i=> $num){
+		$comp=9-15	//$comp= -6 is not exist in array
+		if(array_key_exists(2,$hashTable)){
+			return[$hashTable[2],0];
+		}
+
+		$hashTable[2]=0;
+	}
+}
+
+
+Example 2:
+
+Input: nums = [3,2,4], target = 6
+Output: [1,2]
+
+
+function twosum($nums,$target){
+	$hashTable=[];
+	
+	--------------------------------case-1
+
+	foreach($nums as $i=> $num){
+		$comp=6-3	//$comp=3
+		if(array_key_exists(3,$hashTable)){
+			return[$hashTable[3],0]; //it's match in array that value return 
+		}
+
+		$hashTable[3]=0;
+	}
+
+	--------------------------------case-2
+
+	foreach($nums as $i=> $num){
+		$comp=6-2	//$comp=4
+		if(array_key_exists(4,$hashTable)){
+			return[$hashTable[4],2];
+		}
+
+		$hashTable[4]=2;
+	}
+
+	--------------------------------case-3
+
+	foreach($nums as $i=> $num){
+		$comp=6-4	//$comp= 2 
+		if(array_key_exists(2,$hashTable)){
+			return[$hashTable[2],1];
+		}
+
+		$hashTable[2]=1;
+	}
+
+}
+
+
+
+
+Example 3:
+
+Input: nums = [3,3], target = 6
+Output: [0,1]
+
+
+function twosum($nums,$target){
+	$hashTable=[];
+	
+	--------------------------------case-1
+
+	foreach($nums as $i=> $num){
+		$comp=6-3	//$comp=3
+		if(array_key_exists(3,$hashTable)){
+			return[$hashTable[3],0]; //it's match in array that value return 
+		}
+
+		$hashTable[3]=0;
+	}
+
+	--------------------------------case-2
+
+	foreach($nums as $i=> $num){
+		$comp=6-3	//$comp=3
+		if(array_key_exists(3,$hashTable)){
+			return[$hashTable[3],1];
+		}
+
+		$hashTable[3]=1;
+	}
+
+}

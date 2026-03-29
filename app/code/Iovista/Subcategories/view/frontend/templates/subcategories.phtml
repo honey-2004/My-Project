@@ -1,0 +1,14 @@
+<?php
+$current_category_id = $block->getCurrentCategoryId();
+$categoryObj = $block->categoryRepository->get($current_category_id);
+$subcategories = $categoryObj->getChildrenCategories();
+?>
+
+<ul class="subcategories">
+    <?php foreach ($subcategories as $subcat): ?>
+    <li class="sub-category">
+        <img src="<?=/* @noEscape */ $block->getThumbnailImageUrl($subcat->getId()) ?>" alt="<?=/* @noEscape */ $subcat->getName() ?>" />
+        <a href="<?=/* @noEscape */ $subcat->getUrl() ?>"><?=/* @noEscape */ $subcat->getName() ?></a>
+    </li>    
+    <?php endforeach; ?>
+</ul>

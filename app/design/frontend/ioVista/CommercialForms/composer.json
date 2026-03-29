@@ -1,0 +1,19 @@
+{
+    "name": "iovista/theme-frontend-commercialforms",
+    "description": "ioVista CommercialForms frontend theme for Magento 2",
+    "require": {
+        "php": "~8.2.0||~8.3.0||~8.4.0",
+        "magento/theme-frontend-luma": "*",
+        "magento/framework": "*"
+    },
+    "type": "magento2-theme",
+    "version": "1.0.0",
+    "license": [
+        "proprietary"
+    ],
+    "autoload": {
+        "files": [
+            "registration.php"
+        ]
+    }
+}

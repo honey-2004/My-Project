@@ -1,0 +1,124 @@
+<?php
+/**
+ * @var \Iovista\Blog\Block\Post\View $block
+ */
+$post = $block->getPost();
+?>
+<?php if ($post && $post->getId()): ?>
+    <div class="blog-post-view">
+        <div class="blog-post-back">
+            <a href="<?= $block->escapeUrl($block->getBlogUrl()) ?>"><?= __('← Back to Blog') ?></a>
+        </div>
+        
+        <h1><?= $block->escapeHtml($post->getTitle() ?: $post->getName()) ?></h1>
+        
+        <div class="blog-post-meta">
+            <?php if ($post->getPostDate()): ?>
+                <span class="post-date">
+                    <?= __('Posted on: %1', $block->escapeHtml($post->getPostDate())) ?>
+                </span>
+            <?php endif; ?>
+            
+            <?php if ($post->getAuthor()): ?>
+                <span class="post-author">
+                    <?= __('By: %1', $block->escapeHtml($post->getAuthor())) ?>
+                </span>
+            <?php endif; ?>
+        </div>
+        
+        <?php if ($post->getBannerImage()): ?>
+            <div class="blog-post-image">
+                <img src="<?= $block->escapeUrl($block->getImageUrl($post->getBannerImage())) ?>" 
+                     alt="<?= $block->escapeHtmlAttr($post->getTitle() ?: $post->getName()) ?>" />
+            </div>
+        <?php endif; ?>
+        
+        <?php if ($post->getShortDescription()): ?>
+            <div class="blog-post-short-description">
+                <?= /* @noEscape */ $post->getShortDescription() ?>
+            </div>
+        <?php endif; ?>
+        
+        <?php if ($post->getLongDescription()): ?>
+            <div class="blog-post-content">
+                <?= /* @noEscape */ $post->getLongDescription() ?>
+            </div>
+        <?php endif; ?>
+    </div>
+<?php else: ?>
+    <div class="message error">
+        <p><?= __('Post not found.') ?></p>
+        <a href="<?= $block->escapeUrl($block->getBlogUrl()) ?>"><?= __('Back to Blog') ?></a>
+    </div>
+<?php endif; ?>
+
+<style>
+.blog-post-view {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.blog-post-back {
+    margin-bottom: 20px;
+}
+
+.blog-post-back a {
+    color: #000;
+    text-decoration: none;
+}
+
+.blog-post-back a:hover {
+    text-decoration: underline;
+}
+
+.blog-post-view h1 {
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.blog-post-meta {
+    margin-bottom: 20px;
+    color: #666;
+    font-size: 14px;
+}
+
+.blog-post-meta span {
+    margin-right: 20px;
+}
+
+.blog-post-image {
+    margin: 30px 0;
+}
+
+.blog-post-image img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 4px;
+}
+
+.blog-post-short-description {
+    margin: 20px 0;
+    font-size: 18px;
+    font-weight: 300;
+    line-height: 1.6;
+    color: #555;
+}
+
+.blog-post-content {
+    margin-top: 30px;
+    line-height: 1.8;
+    color: #333;
+}
+
+.blog-post-content p {
+    margin-bottom: 15px;
+}
+
+</style>
+
+
+
+
+
+

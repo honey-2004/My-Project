@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <fieldset name="search_engine_optimization">
+        <field name="canonical_tag">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string">Canonical Tag</item>
+                    <item name="componentType" xsi:type="string">field</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="dataScope" xsi:type="string">canonical_tag</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="sortOrder" xsi:type="number">60</item>
+                    <item name="note" xsi:type="string">Custom canonical tag for SEO</item>
+                </item>
+            </argument>
+        </field>
+    </fieldset>
+</form>

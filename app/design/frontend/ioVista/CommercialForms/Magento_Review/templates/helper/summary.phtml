@@ -1,0 +1,24 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+/** @var \Magento\Review\Block\Product\ReviewRenderer $block */
+/** @var \Magento\Framework\Escaper $escaper */
+?>
+<?php if ($block->isReviewEnabled() && $block->getReviewsCount()): ?>
+    <?php $rating = $block->getRatingSummary(); ?>
+    <div class="product-reviews-summary custom-listing-reviews" itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">
+        <?php if ($rating): ?>
+            <span class="rating-value">
+                <span itemprop="ratingValue"><?= number_format($rating / 20, 1) ?></span>
+                <meta itemprop="bestRating" content="5"/>
+                <meta itemprop="worstRating" content="1"/>
+            </span>
+        <?php endif; ?>
+        <span class="reviews-count">
+            (<span itemprop="reviewCount"><?= $block->getReviewsCount() ?><?= $escaper->escapeHtml(__('reviews')) ?></span>)
+        </span>
+    </div>
+<?php endif; ?>

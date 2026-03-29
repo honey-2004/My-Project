@@ -1,0 +1,266 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// phpcs:disable Magento2.Templates.ThisInTemplate
+// phpcs:disable Generic.Files.LineLength.TooLong
+
+/** @var \Magento\Contact\Block\ContactForm $block */
+/** @var \Magento\Contact\ViewModel\UserDataProvider $viewModel */
+
+$viewModel = $block->getViewModel();
+
+$ioVistaHelper = $this->helper('Iovista\ContactUs\Helper\Data');
+$allowedFileTypes = $ioVistaHelper->getAllowedFileTypes();
+$maxFileSize = $ioVistaHelper->getMaxFileSize() * 1024 * 1024; // Convert MB to Bytes
+
+?>
+<form class="form contact"
+      action="<?= $block->escapeUrl($block->getFormAction()) ?>"
+      id="contact-form"
+      method="post"
+      data-hasrequired="<?= $block->escapeHtmlAttr(__('* Required Fields')) ?>"
+      data-mage-init='{"validation":{}}'
+      enctype="multipart/form-data">
+    <fieldset class="fieldset">
+        <legend class="legend write-us"><h1 style="font-size: 4rem;font-weight: 400;"><?= $block->escapeHtml(__('Contact US')) ?></h1></legend><br />
+        <div class="field note no-label">
+            <?= $block->escapeHtml(__('Ask us questions about manufacturers, products or any other area that you would like to receive information about. If there is anything that you would like to see on this site, please send us your comments and suggestions.')) ?>
+        </div>
+        <div class="field required-fields-note">
+            <?= $block->escapeHtml(__('Required fields are marked with an asterisk (*)')) ?>
+        </div>
+        <div class="field company">
+            <label class="label" for="company"><span><?= $block->escapeHtml(__('Company')) ?></span></label>
+            <div class="control">
+                <input name="company"
+                       id="company"
+                       title="<?= $block->escapeHtmlAttr(__('Company')) ?>"
+                       value=""
+                       class="input-text"
+                       type="text"/>
+            </div>
+        </div>
+    </fieldset>
+    <div class="user-name-wrapper">
+        <fieldset class="fieldset user-name">
+            <div class="field name fname required">
+                <label class="label" for="fname"><span><?= $block->escapeHtml(__('First name')) ?></span></label>
+                <div class="control">
+                    <input name="fname"
+                           id="fname"
+                           title="<?= $block->escapeHtmlAttr(__('First name')) ?>"
+                           value="<?= $block->escapeHtmlAttr($viewModel->getUserName()) ?>"
+                           class="input-text"
+                           type="text"
+                           data-validate="{required:true}"/>
+                </div>
+            </div>
+            <div class="field name lname required">
+                <label class="label" for="lname"><span><?= $block->escapeHtml(__('Last name')) ?></span></label>
+                <div class="control">
+                    <input name="lname"
+                           id="lname"
+                           title="<?= $block->escapeHtmlAttr(__('Last name')) ?>"
+                           value="<?= $block->escapeHtmlAttr($viewModel->getUserName()) ?>"
+                           class="input-text"
+                           type="text"
+                           data-validate="{required:true}"/>
+                </div>
+            </div>
+        </fieldset>
+    </div>
+    <div class="email-phone-number-wrapper">
+        <fieldset class="fieldset email-phone-number">
+            <div class="field email required">
+                <label class="label" for="email"><span><?= $block->escapeHtml(__('Email')) ?></span></label>
+                <div class="control">
+                    <input name="email"
+                           id="email"
+                           title="<?= $block->escapeHtmlAttr(__('Email')) ?>"
+                           value="<?= $block->escapeHtmlAttr($viewModel->getUserEmail()) ?>"
+                           class="input-text"
+                           type="email"
+                           data-validate="{required:true, 'validate-email':true}"
+                           data-mage-init='{"mage/trim-input":{}}'
+                    />
+                </div>
+            </div>
+            <div class="field telephone required">
+                <label class="label" for="telephone"><span><?= $block->escapeHtml(__('Phone Number')) ?></span></label>
+                <div class="control">
+                    <input name="telephone"
+                           id="telephone"
+                           title="<?= $block->escapeHtmlAttr(__('Phone Number')) ?>"
+                           value="<?= $block->escapeHtmlAttr($viewModel->getUserTelephone()) ?>"
+                           class="input-text"
+                           type="tel"
+                           data-validate="{required:true, 'validate-number':true}"/>
+                </div>
+            </div>
+        </fieldset>
+    </div>
+    <div class="customer-addr-wrapper">
+        <fieldset class="fieldset customer-addr">
+            <div class="field city">
+                <label class="label" for="city"><span><?= $block->escapeHtml(__('City')) ?></span></label>
+                <div class="control">
+                    <input name="city"
+                           id="city"
+                           title="<?= $block->escapeHtmlAttr(__('City')) ?>"
+                           value=""
+                           class="input-text"
+                           type="text"/>
+                </div>
+            </div>
+            <div class="field state_province">
+                <label class="label" for="state_province"><span><?= $block->escapeHtml(__('State/Province')) ?></span></label>
+                <div class="control">
+                    <input name="state_province"
+                           id="state_province"
+                           title="<?= $block->escapeHtmlAttr(__('State/Province')) ?>"
+                           value=""
+                           class="input-text"
+                           type="text"/>
+                </div>
+            </div>
+            <div class="field country required">
+                <label class="label" for="country"><span><?= $block->escapeHtml(__('Country')) ?></span></label>
+                <div class="control">
+                    <input name="country"
+                           id="country"
+                           title="<?= $block->escapeHtmlAttr(__('Country')) ?>"
+                           value=""
+                           class="input-text"
+                           type="text"
+                           data-validate="{required:true}"/>
+                </div>
+            </div>
+        </fieldset>
+    </div>
+    <fieldset class="fieldset">
+        <div class="field product_of_interest required">
+            <label class="label" for="product_of_interest"><span><?= $block->escapeHtml(__('Product of Interest')) ?></span></label>
+            <div class="control">
+                <input name="product_of_interest"
+                       id="product_of_interest"
+                       title="<?= $block->escapeHtmlAttr(__('Product of Interest')) ?>"
+                       value=""
+                       class="input-text"
+                       type="text"
+                       data-validate="{required:true}"/>
+            </div>
+        </div>
+        <div class="field comment">
+            <label class="label" for="comment">
+                <span><?= $block->escapeHtml(__('To expedite your inquiry, please provide all of the available product information or use our document upload feature for pictures.')) ?></span>
+            </label>
+            <div class="control">
+                <textarea name="comment"
+                          id="comment"
+                          title="<?= $block->escapeHtmlAttr(__('What’s on your mind?')) ?>"
+                          class="input-text"
+                          cols="5"
+                          rows="3"
+                ><?= $block->escapeHtml($viewModel->getUserComment()) ?></textarea>
+            </div>
+        </div>
+        <?= $block->getChildHtml('form.additional.info') ?>
+    </fieldset>
+    <fieldset class="fieldset">
+        <p style="font-size: 15px;">
+            <b><?= $block->escapeHtml(__('Please upload any necessary documents or photos.')) ?></b>
+        </p>
+        <p id="file_error" class="message-error error message" style="display:none;">
+            <?= $block->escapeHtml(__('File is too large')) ?>
+        </p>
+        <input id="attachment" accept="<?= $block->escapeHtmlAttr($allowedFileTypes) ?>" name="attachment" type="file" value="<?= $block->escapeHtmlAttr($this->helper('Magento\Contact\Helper\Data')->getPostValue('attachment')) ?>">
+
+        <p class="file">
+            <?= $block->escapeHtml(__('File must be less than %1MB and in any of these formats: %2', $maxFileSize / 1024 / 1024, $allowedFileTypes)) ?>
+        </p>
+        <script type="text/javascript" xml="space">
+            require(['jquery'], function ($) {
+                jQuery(document).ready(function($){
+                    var uploadField = document.getElementById("attachment");
+                    uploadField.onchange = function() {
+                        if(this.files[0].size > <?= $maxFileSize ?>){
+                            $('#file_error').show();
+                            $('#file_error').text('<?= __('File is too large') ?>');
+                            this.value = "";
+                        } else {
+                            $('#file_error').hide();
+                        };
+                    };
+                });
+            });
+        </script>
+    </fieldset>
+    <div class="actions-toolbar">
+        <div class="primary">
+            <input type="hidden" name="hideit" id="hideit" value="" />
+            <button type="submit" title="<?= $block->escapeHtmlAttr(__('Submit')) ?>" class="action submit primary">
+                <span><?= $block->escapeHtml(__('Submit')) ?></span>
+            </button>
+        </div>
+    </div>
+</form>
+<style type="text/css">
+    .legend.write-us {
+        margin-top: 10px;
+        font-size: 4rem;
+        color: #0053a1;
+    }
+    .contact-index-index .column:not(.sidebar-additional) .form.contact {
+        margin: 25px auto !important;
+        width: 80% !important;
+    }
+    #contact-form .required-fields-note {
+        color: #dc3545 !important;
+        font-style: italic;
+        font-weight: 700;
+    }
+    #contact-form .email-phone-number {
+        display: flex !important;
+        justify-content: space-between !important;
+        width: 100% !important;
+    }
+    #contact-form .email-phone-number .field.email, #contact-form .email-phone-number .field.telephone {
+        width: 48% !important;
+    }
+    #contact-form .user-name {
+        display: flex !important;
+        justify-content: space-between !important;
+        width: 100% !important;
+    }
+    #contact-form .user-name .field.fname, #contact-form .user-name .field.lname {
+        width: 48% !important;
+    }
+    #contact-form .customer-addr {
+        display: flex !important;
+        justify-content: space-between !important;
+        width: 100% !important;
+    }
+    #contact-form .customer-addr .field.city, #contact-form .customer-addr .field.state_province, #contact-form .customer-addr .field.country {
+        width: 32% !important;
+    }
+    @media screen and (max-width: 768px), print {
+        #contact-form .user-name, #contact-form .email-phone-number, #contact-form .customer-addr {
+            display: unset !important;
+        }
+        #contact-form .user-name .field.fname, #contact-form .user-name .field.lname, #contact-form .email-phone-number .field.email, #contact-form .email-phone-number .field.telephone, #contact-form .customer-addr .field.city, #contact-form .customer-addr .field.state_province, #contact-form .customer-addr .field.country {
+            width: 100% !important;
+        }
+    }
+</style>
+<script type="text/x-magento-init">
+    {
+        "*": {
+            "Magento_Customer/js/block-submit-on-send": {
+                "formId": "contact-form"
+            }
+        }
+    }
+</script>

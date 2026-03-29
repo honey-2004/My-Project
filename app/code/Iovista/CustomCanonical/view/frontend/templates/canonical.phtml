@@ -1,0 +1,3 @@
+<?php if ($canonical = $block->getCanonicalUrl()): ?>
+    <link rel="canonical" href="<?= $block->escapeUrl($canonical) ?>" />
+<?php endif; ?>

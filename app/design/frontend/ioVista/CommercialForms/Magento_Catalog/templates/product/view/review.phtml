@@ -1,0 +1,15 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+?>
+<?php /** @var $block \Magento\Catalog\Block\Product\AbstractProduct */ ?>
+<?php $_product = $block->getProduct(); ?>
+<div class="reviews-main">
+	<?= $block->getReviewsSummaryHtml($_product, false, true) ?>
+	<div class="product attribute sku">
+		<strong class="type">SKU</strong>
+        <div class="value" itemprop="sku"><?php echo $_product->getSku(); ?></div>
+    </div>
+</div>

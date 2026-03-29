@@ -1,0 +1,82 @@
+<div class="technical-support-form">
+<div class="block-title">
+        <strong class="blog-sidebar-block-title">
+            <?= $escaper->escapeHtml(__('Request Technical Support')) ?>
+        </strong>
+</div>
+<form id="support-form" action="<?= $block->getUrl('supportform/index/post') ?>" method="post" data-mage-init='{"validation":{}}'>
+    <input type="hidden" name="form_key" value="<?= $block->getFormKey(); ?>" />
+    <div class="technical-support-form-field">
+        <label for="fn">Full Name *</label>
+        <input type="text" id="fn" name="name" placeholder="Full Name *" class="technical-form-field" required data-validate="{required:true}" />
+    </div>
+    <div class="technical-support-form-field">
+        <label for="fe">Email Address *</label>
+        <input type="email" id="fe" name="email" placeholder="Email *" class="technical-form-field" required data-validate="{required:true, 'validate-email':true}" />
+    </div>
+    <div class="technical-support-form-field">
+        <label for="fp">Phone Number</label>
+        <input type="text" id="fp" name="phone" placeholder="(800) 000-0000" class="technical-form-field"/>
+    </div>
+    <div class="technical-support-form-field">
+        <label for="ft">Topic</label>
+        <select id="ft" name="topic" class="technical-form-field">
+            <option value="">Select a topic...</option>
+            <option value="Condensate Drain Selection">Condensate Drain Selection</option>
+            <option value="JORC Product Inquiry">JORC Product Inquiry</option>
+            <option value="Compressed Air System Design">Compressed Air System Design</option>
+            <option value="Product Availability / Quote">Product Availability / Quote</option>
+            <option value="Repair & Maintenance Services">Repair & Maintenance Services</option>
+            <option value="Other Technical Question">Other Technical Question</option>
+        </select>
+    </div>
+    <div class="technical-support-form-field">
+        <label for="fm">Message *</label>
+        <textarea id="fm" name="message" placeholder="Describe your application, operating pressure, system size, or question..." style="height: 100px;" class="technical-form-field" required data-validate="{required:true}"></textarea>
+    </div>
+    <div id="form-response"></div>
+    <button type="submit" class="action-send-message">✉ Send Message</button>
+</form>
+</div>
+<script>
+require(['jquery', 'mage/validation'], function($) {
+    $('#support-form').on('submit', function(e) {
+        e.preventDefault();
+        e.stopImmediatePropagation();
+
+        var form = $(this);
+
+        if (!form.valid()) {
+            return false;
+        }
+
+        $.ajax({
+            url: form.attr('action'),
+            type: 'POST',
+            data: form.serialize(),
+            dataType: 'json',
+
+            beforeSend: function() {
+                form.find('button').prop('disabled', true);
+            },
+
+            success: function(response) {
+                if (response.success) {
+                    $('#form-response').html('<p>✔ Message sent! Our team will respond within 1 business day.</p>');
+                    form.trigger('reset');
+                } else {
+                    $('#form-response').html('<p style="color:red;">' + (response.message || 'Something went wrong.') + '</p>');
+                }
+            },
+
+            error: function() {
+                $('#form-response').html('<p style="color:red;">Server error occurred</p>');
+            },
+
+            complete: function() {
+                form.find('button').prop('disabled', false);
+            }
+        });
+    });
+});
+</script>

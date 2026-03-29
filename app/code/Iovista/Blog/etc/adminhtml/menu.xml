@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Iovista_Blog::iovistablog" title="Iovista Blog" module="Iovista_Blog" sortOrder="51" resource="Iovista_Blog::iovistablog"/>
+        <add id="Iovista_Blog::post" title="Manage Posts" module="Iovista_Blog" sortOrder="10" action="iovistablog/post" resource="Iovista_Blog::post" parent="Iovista_Blog::iovistablog"/>
+    </menu>
+</config>

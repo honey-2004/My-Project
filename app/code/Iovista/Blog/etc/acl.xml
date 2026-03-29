@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
+    <acl>
+        <resources>
+            <resource id="Magento_Backend::admin">
+                <resource id="Iovista_Blog::iovistablog" title="Iovista Blog" sortOrder="51">
+                    <resource id="Iovista_Blog::post" title="Manage Posts" sortOrder="10">
+                        <resource id="Iovista_Blog::post_delete" title="Delete Posts" sortOrder="20"/>
+                    </resource>
+                </resource>
+            </resource>
+        </resources>
+    </acl>
+</config>

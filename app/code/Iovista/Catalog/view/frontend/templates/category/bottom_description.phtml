@@ -1,0 +1,10 @@
+<?php
+/** @var \Iovista\Catalog\Block\Category\BottomDescription $block */
+?>
+<?php if ($bottomDescription = $block->getBottomDescription()): ?>
+    <div class="category-bottom-description-wrapper" style="width: 100%; clear: both;">
+        <div class="category-bottom-description container" style="margin: 2rem auto; max-width: 1280px; padding: 0 15px;">
+            <?= /* @noEscape */ $bottomDescription; ?>
+        </div>
+    </div>
+<?php endif; ?>

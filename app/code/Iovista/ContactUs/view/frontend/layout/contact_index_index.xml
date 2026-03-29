@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <meta name="description" content="Get in touch with Control Specialties today! We’re here to assist you with any questions or inquiries. Reach out for expert solutions and personalized service."/>
+        <meta name="title" content="Contact Us for Premium Service and Solutions"/>
+    </head>
+    <body>
+        <referenceBlock name="contactForm">
+            <action method="setTemplate">
+                <argument name="template" xsi:type="string">Iovista_ContactUs::form.phtml</argument>
+            </action>
+        </referenceBlock>
+    </body>
+</page>

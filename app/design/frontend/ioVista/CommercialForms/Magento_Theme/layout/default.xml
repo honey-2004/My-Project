@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page layout="3columns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="css/commercialforms_custom.css"/>
+    </head>
+	<body>
+		<referenceContainer name="header.container">
+			<block class="Magento\Cms\Block\Block" name="top.notification.bar" before="-">
+				<arguments>
+					<argument name="block_id" xsi:type="string">top-notification-bar</argument>
+				</arguments>
+			</block>
+		</referenceContainer>
+
+		<referenceBlock name="footer_links" remove="true"/>
+		<referenceBlock name="form.subscribe" remove="true"/>
+
+		<referenceContainer name="header-wrapper">
+            <block class="Bss\FastOrder\Block\FastOrderLinkCart" name="fastorder-link-shopping-cart"
+                   ifconfig="fastorder/general/enabled" after="top.search">
+                <arguments>
+                    <argument name="label" xsi:type="string" translate="true">Quick Order</argument>
+                    <argument name="path" xsi:type="helper" helper="Bss\FastOrder\Helper\Data::getUrlShortcut">
+                        <param name="defaultValue">fast-order</param>
+                    </argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+
+		<referenceContainer name="footer-container">
+			<block class="Magento\Cms\Block\Block" name="footer.newsletter">
+		        <arguments>
+		            <argument name="block_id" xsi:type="string">footer_newsletter</argument>
+		        </arguments>
+		    </block>
+		    <block class="Magento\Cms\Block\Block" name="footer.links">
+		        <arguments>
+		            <argument name="block_id" xsi:type="string">new_footer_section</argument>
+		        </arguments>
+		    </block>
+		</referenceContainer>
+	</body>
+</page>

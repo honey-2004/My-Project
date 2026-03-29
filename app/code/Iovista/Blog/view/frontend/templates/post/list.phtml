@@ -1,0 +1,133 @@
+<?php
+/**
+ * @var \Iovista\Blog\Block\Post\ListPost $block
+ */
+$posts = $block->getPosts();
+?>
+<div class="blog-post-list">
+    <h1><?= __('Blog Posts') ?></h1>
+    
+    <?php if ($posts && count($posts) > 0): ?>
+        <div class="blog-posts">
+            <?php foreach ($posts as $post): ?>
+                <div class="blog-post-item">
+                    <h2>
+                        <a href="<?= $block->escapeUrl($block->getPostUrl($post)) ?>">
+                            <?= $block->escapeHtml($post->getTitle() ?: $post->getName()) ?>
+                        </a>
+                    </h2>
+                    
+                    <?php if ($post->getBannerImage()): ?>
+                        <div class="blog-post-image">
+                            <img src="<?= $block->escapeUrl($block->getImageUrl($post->getBannerImage())) ?>" 
+                                 alt="<?= $block->escapeHtmlAttr($post->getTitle() ?: $post->getName()) ?>" />
+                        </div>
+                    <?php endif; ?>
+                    
+                    <?php if ($post->getShortDescription()): ?>
+                        <div class="blog-post-short-description">
+                            <?= /* @noEscape */ $post->getShortDescription() ?>
+                        </div>
+                    <?php endif; ?>
+                    
+                    <div class="blog-post-meta">
+                        <?php if ($post->getPostDate()): ?>
+                            <span class="post-date">
+                                <?= __('Posted on: %1', $block->escapeHtml($post->getPostDate())) ?>
+                            </span>
+                        <?php endif; ?>
+                        
+                        <?php if ($post->getAuthor()): ?>
+                            <span class="post-author">
+                                <?= __('By: %1', $block->escapeHtml($post->getAuthor())) ?>
+                            </span>
+                        <?php endif; ?>
+                    </div>
+                    
+                    <a href="<?= $block->escapeUrl($block->getPostUrl($post)) ?>" class="read-more">
+                        <?= __('Read More') ?>
+                    </a>
+                </div>
+            <?php endforeach; ?>
+        </div>
+    <?php else: ?>
+        <p><?= __('No blog posts found.') ?></p>
+    <?php endif; ?>
+</div>
+
+<style>
+.blog-post-list {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.blog-post-item {
+    margin-bottom: 40px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.blog-post-item h2 {
+    margin-bottom: 15px;
+}
+
+.blog-post-item h2 a {
+    color: #333;
+    text-decoration: none;
+}
+
+.blog-post-item h2 a:hover {
+    color: #0066cc;
+}
+
+.blog-post-image {
+    margin: 20px 0;
+}
+
+.blog-post-image img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 4px;
+}
+
+.blog-post-short-description {
+    margin: 15px 0;
+    line-height: 1.6;
+}
+
+.blog-post-meta {
+    margin: 15px 0;
+    color: #666;
+    font-size: 14px;
+}
+
+.blog-post-meta span {
+    margin-right: 20px;
+}
+
+.read-more {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 10px 20px;
+    background-color: #0066cc;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+}
+.blog-post-back a{
+    background-color: #000 !important;
+    color: #fff;
+}
+
+.read-more:hover , .read-more:visited {
+    background-color: #000 !important;
+    color: #fff;
+}
+</style>
+
+
+
+
+
+

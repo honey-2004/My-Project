@@ -1,0 +1,35 @@
+<!--@subject Support Form Submission @-->
+<!--@vars {
+"var name":"Sender Name",
+"var email":"Sender Email",
+"var telephone":"Sender Telephone",
+"var topic":"Topic",
+"var comment":"Comment"
+} @-->
+
+{{template config_path="design/email/header_template"}}
+
+<table class="message-details">
+    <tr>
+        <td><b>{{trans "Full Name"}}</b></td>
+        <td>{{var name}}</td>
+    </tr>
+    <tr>
+        <td><b>{{trans "Email Address"}}</b></td>
+        <td>{{var email}}</td>
+    </tr>
+    <tr>
+        <td><b>{{trans "Phone Number"}}</b></td>
+        <td>{{var telephone}}</td>
+    </tr>
+    <tr>
+        <td><b>{{trans "Topic"}}</b></td>
+        <td>{{var topic}}</td>
+    </tr>
+    <tr>
+        <td><b>{{trans "Message"}}</b></td>
+        <td>{{var comment}}</td>
+    </tr>
+</table>
+
+{{template config_path="design/email/footer_template"}}

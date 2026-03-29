@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<csp_whitelist xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Csp:etc/csp_whitelist.xsd">
+    <policies>
+        <policy id="script-src">
+            <values>
+                <value id="script-gstatic" type="host">*.gstatic.com</value>
+                <value id="script-src-elem-google" type="host">*.google.com</value>
+                <value id="script-src-ksrndkehqnwntyxlhgto" type="host">*.ksrndkehqnwntyxlhgto.com</value>
+            </values>
+        </policy>
+        <policy id="img-src">
+            <values>
+                <value id="google_co" type="host">www.google.co.in</value>
+                <value id="img-gstatic" type="host">*.gstatic.com</value>
+            </values>
+        </policy>
+        <policy id="connect-src">
+            <values>
+                <value id="connect-facebook" type="host">*.google.co.in</value>
+                <value id="connect-iconnode" type="host">process.iconnode.com</value>
+                <value id="connect-ksrndkehqnwntyxlhgto" type="host">*.ksrndkehqnwntyxlhgto.com</value>
+            </values>
+        </policy>
+        <policy id="style-src">
+            <values>
+                <value id="style-googletagmanager" type="host">*.googletagmanager.com</value>
+                <value id="style-googleapis" type="host">*.googleapis.com</value>
+            </values>
+        </policy>
+        <policy id="font-src">
+            <values>
+                <value id="font-facebook" type="host">*.gstatic.com</value>
+            </values>
+        </policy>
+    </policies>
+</csp_whitelist>

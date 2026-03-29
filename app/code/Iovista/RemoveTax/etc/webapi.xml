@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
+	<route url="/V1/guest-carts/:cartId/remove-tax" method="PUT">
+        <service class="Iovista\RemoveTax\Api\GuestTaxExemptManagementInterface" method="removeTax"/>
+        <resources>
+            <resource ref="anonymous" />
+        </resources>
+    </route>
+	<route url="/V1/carts/mine/remove-tax" method="PUT">
+        <service class="Iovista\RemoveTax\Api\TaxExemptManagementInterface" method="removeTax"/>
+        <resources>
+            <resource ref="self" />
+        </resources>
+        <data>
+            <parameter name="cartId" force="true">%cart_id%</parameter>
+        </data>
+    </route>
+    <route url="/V1/guest-carts/:cartId/reset-state-flag" method="PUT">
+        <service class="Iovista\RemoveTax\Api\GuestTaxExemptManagementInterface" method="resetStateFlag"/>
+        <resources>
+            <resource ref="anonymous" />
+        </resources>
+    </route>
+    <route url="/V1/carts/mine/reset-state-flag" method="PUT">
+        <service class="Iovista\RemoveTax\Api\TaxExemptManagementInterface" method="resetStateFlag"/>
+        <resources>
+            <resource ref="self" />
+        </resources>
+        <data>
+            <parameter name="cartId" force="true">%cart_id%</parameter>
+        </data>
+    </route>
+</routes>

@@ -1,0 +1,194 @@
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const columns = document.querySelectorAll('.footer-column');
+    
+    // Function to handle the accordion logic
+    function setupMobileFooter() {
+        const isMobile = window.innerWidth <= 768;
+
+        columns.forEach((column, index) => {
+            const header = column.querySelector('h4');
+            const list = column.querySelector('ul');
+            
+            // Skip the "Follow Us" section (the last column)
+            if (index === columns.length - 1) return;
+
+            // Remove existing event listeners by cloning the node
+            const newHeader = header.cloneNode(true);
+            header.parentNode.replaceChild(newHeader, header);
+
+            if (isMobile) {
+                // Open the first item ("Information") by default, hide others
+                if (index === 0) {
+                    newHeader.classList.add('active');
+                    list.style.display = 'block';
+                } else {
+                    newHeader.classList.remove('active');
+                    list.style.display = 'none';
+                }
+
+                // Add click event for mobile toggling
+                newHeader.addEventListener('click', function() {
+                    // Toggle current section
+                    this.classList.toggle('active');
+                    if (this.classList.contains('active')) {
+                        list.style.display = 'block';
+                    } else {
+                        list.style.display = 'none';
+                    }
+                });
+            } else {
+                // Reset styles for Desktop view
+                newHeader.classList.remove('active');
+                list.style.display = ''; // Let CSS handle desktop display
+            }
+        });
+    }
+
+    // Run on load
+    setupMobileFooter();
+
+    // Re-run if the user resizes the window (e.g., rotating their phone)
+    window.addEventListener('resize', function() {
+        setupMobileFooter();
+    });
+});
+</script>
+<div class="footer-newsletter">
+<div class="newsletter-text">
+<h2><span>GET THE LATEST OFFERS</span> <span class="newsletter-text-wrap">AND NEWS BY SUBSCRIBING!</span></h2>
+<p>Receive news and the best offers straight to your inbox.</p>
+</div>
+<div class="newsletter-form">
+        {{block class="Magento\Newsletter\Block\Subscribe" name="footer.newsletter" template="Magento_Newsletter::subscribe.phtml"}}
+<div class="newsletter-terms">
+<input type="checkbox" id="newsletter_terms">
+<label for="newsletter_terms">
+                I agree to Terms and Conditions & Privacy Policy
+</label>
+</div>
+</div>
+</div>
+<div class="footer-columns">
+<div class="footer-column">
+<h4>Information</h4>
+<ul>
+<li><a href="#">FAQ</a></li>
+<li><a href="#">Policies</a></li>
+<li><a href="#">Promotional Items</a></li>
+<li><a href="#">Privacy Policy</a></li>
+<li><a href="#">Site Map</a></li>
+</ul>
+</div>
+<div class="footer-column">
+<h4>Why Buy From Us</h4>
+<ul>
+<li><a href="#">About Us</a></li>
+<li><a href="#">Customer Service</a></li>
+<li><a href="#">Contact Us</a></li>
+<li><a href="#">Our Culture</a></li>
+<li><a href="#">Our Story</a></li>
+<li><a href="#">Custom Forms</a></li>
+</ul>
+</div>
+<div class="footer-column">
+<h4>My Account</h4>
+<ul>
+<li><a href="/customer/account/login">Sign In</a></li>
+<li><a href="/checkout/cart">View Cart</a></li>
+<li><a href="#">My Shopping List</a></li>
+<li><a href="#">Orders and Returns</a></li>
+</ul>
+</div>
+<div class="footer-column">
+<h4>Contacts</h4>
+<ul>
+<li class="footer-contact-detail">
+    <span class="footer-address">
+        <img data-webpconverted="1" src="{{media url=.renditions/wysiwyg/collection/Map.jpg}}" alt="Map Icon" class="footer-map-icon" />
+     </span>  
+    <p>Commercial Forms® 3791 Old US 23, Suite 100 Brighton, MI 48114</p>
+</li>
+<li class="footer-contact-detail">
+    <span class="footer-contact">
+        <img data-webpconverted="1" src="{{media url=.renditions/wysiwyg/collection/Phone.jpg}}" alt="Phone Icon" class="footer-phone-icon" />
+    </span>  
+    <p>
+        <a href="tel:800-233-0771 or 810-494-0964" class="footer-phone-content"><span>800-233-0771 or 810-494-0964</span></a>
+    </p>
+</li>
+</ul>
+</div>
+
+<div class="footer-column">
+<h4>Follow Us</h4>
+<ul class="footer-social-icons">
+<li><a href="#"><img src="{{media url=.renditions/wysiwyg/collection/Instagram_1.jpg}}" alt="Instagram Icon" class="footer-instagram-icon"></a></li>
+<li><a href="#"><img src="{{media url=.renditions/wysiwyg/collection/Linkedin.jpg}}" alt="LinkedIn Icon" class="footer-linkdin-icon"></a></li>
+</ul>
+</div>
+</div>
+<style>
+.footer-newsletter {display: flex;justify-content: space-between;align-items: center;background: #44548c;padding: 64px 104px 64px 104px;flex-wrap: wrap;}
+.newsletter-text {width: 50%;}
+.newsletter-text h2 {color: #FFF;font-size: 30px;font-weight: 700;margin-bottom: 10px;margin-top: 0px;line-height: 38px;}
+.newsletter-text p {color: #FFF;margin: 0;font-size: 16px;}
+.newsletter-form {width: 47%;}
+.newsletter-form .block.newsletter {display: flex;gap: 10px;}
+.newsletter-form input[type="email"] {flex: 1;height: 45px;border-radius: 4px;border: none;padding: 0 10px;width: 439px;}
+.newsletter-form input[type="email"]::placeholder {color: #BBBBC3;}
+.newsletter-form button {height: 45px;background: #f7941d;border: none;padding: 0 20px;color: #fff;border-radius: 4px;cursor: pointer;}
+.footer-newsletter .action.subscribe {background: #f79533;border: none;height: 45px;padding: 0 20px;border-radius: 4px;color: #fff;font-weight: 600;border-bottom-left-radius: 4px !important;border-top-left-radius: 4px !important;margin-left: 230px !important;}
+.newsletter-terms {margin-top: 10px;color: #fff;font-size: 13px;font-size: 14px;}
+.newsletter-terms input[type="checkbox"]{margin: 0;position: relative;top: 4px;width: 16px;height: 18px;}
+.block.newsletter .field .control:before{display: none;}
+.footer-columns {display: flex;justify-content: space-between;flex-wrap: wrap;padding: 40px 60px;background: #f5f5f5;}
+.footer-column {width: 18%;}
+.footer-column h4 {font-size: 16px;margin-bottom: 15px;font-weight: 600;color: #242428;}
+.footer-column ul {list-style: none;padding: 0;margin: 0;}
+.footer-column ul li {margin-bottom: 8px;font-size: 16px;color: #56565D;}
+.footer-column ul li a {color: #555;text-decoration: none;}
+.footer-column ul li a:hover {text-decoration: underline;}
+.copyright{background-color: #fff;color: #71717A;text-align: left;padding: 10px 60px;font-size: 14px;}
+.footer-address , .footer-contact , .footer-social-icons{display: inline-flex;gap: 15px;padding-bottom: 15px;align-items: center;}
+.footer-social-icons{gap: 24px;}
+.footer-map-icon, .footer-phone-icon {max-width: 20px;height: 20px;}
+.footer-instagram-icon , .footer-linkdin-icon {max-width: 50px;height: 40px;}
+.footer-instagram-icon , .footer-linkdin-icon {background: #F8992F;border-radius: 4.8px;}
+.footer-phone-content{text-decoration: none;}
+.footer-contact-detail{display: inline-flex;gap: 15px;}
+.newsletter-text .newsletter-text-wrap{display: block;}
+@media only screen and (max-width: 1200px) {
+    .newsletter-form input[type="email"]{width: 320px;}
+    .footer-newsletter .action.subscribe{margin-left: 120px !important;}
+}
+@media (max-width: 1024px) {
+    .footer-newsletter {padding: 35px 16px 35px 16px;}
+    .newsletter-text {width: 100%;margin-bottom: 20px;}
+    .newsletter-form {width: 100%;}
+    .footer-column {width: 45%;margin-bottom: 10px;}
+    .newsletter-text .newsletter-text-wrap{display: inline-block;}
+     .copyright {padding: 8px 15px;}
+    .footer-columns {padding: 15px 15px;}
+}
+@media (max-width: 768px) { 
+    .newsletter-text, .footer-column , .newsletter-form{width: 100%;}
+    .footer-newsletter .action.subscribe{margin-left: 0px !important;}
+    .footer-newsletter .block.newsletter .actions{display: block;justify-content: center;align-items: center; margin-top: 10px; width: 100%;}
+    .newsletter-form .block.newsletter input{ margin-right: 0px; display: block;}
+    .newsletter-form .block.newsletter{ display: block;}
+    .newsletter-form input[type="email"] , .newsletter-form .block.newsletter .action.subscribe{width: 100%;}
+    .copyright {text-align: center;}
+    .footer-instagram-icon, .footer-linkdin-icon{max-width: 32px;height: 32px;}
+    /*add a responsive arrow*/
+    .footer-column h4 {cursor: pointer;padding: 15px 0;margin: 0;display: flex;justify-content: space-between;align-items: center;font-weight: bold;user-select: none;}
+    .footer-column:not(:last-child) h4::after {content: '';width: 8px;height: 8px;border-bottom: 2px solid #333; border-right: 2px solid #333;transform: rotate(45deg);transition: transform 0.3s ease;margin-right: 5px;}
+    .footer-column h4.active::after {transform: rotate(-135deg);}
+    .footer-column:not(:last-child) ul {display: none;padding-bottom: 15px;margin: 0;}
+    .footer-column:last-child ul.footer-social-icons {display: flex;gap: 15px;list-style: none;padding: 0 0 20px 0;}
+}
+@media (max-width: 600px) { 
+    .copyright { font-size: 11px;}
+    .newsletter-text h2{font-size: 20px;line-height: 30px;}
+}
+</style>

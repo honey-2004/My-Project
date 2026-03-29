@@ -1,0 +1,95 @@
+<!--
+/**
+ * Magenizr NewsletterSubscriptionAtCheckout
+ *
+ * @category    Magenizr
+ * @package     Magenizr_NewsletterSubscriptionAtCheckout
+ * @copyright   Copyright (c) 2018 Magenizr (http://www.magenizr.com)
+ * @license     http://opensource.org/licenses/osl-3.0.php Open Software License (OSL 3.0)
+ */
+-->
+
+<!-- ko if: enabled -->
+    <div class="field newsletter-subscribe-field" data-bind="attr: {'data-debug': 'newsletter-field-enabled'}">
+        <div class="control">
+            <input class="input-text newsletter-subscribe-checkbox"
+                   type="checkbox"
+                   data-bind="checked: checked, attr: {'data-debug': 'newsletter-checkbox'}"
+                   name="newsletter_subscribe"
+                   id="newsletter_subscribe" />
+            <label class="label" for="newsletter_subscribe">
+                <span data-bind="i18n: label"></span>
+            </label>
+        </div>
+
+        <!-- ko if: note_enabled -->
+            <span class="note" data-bind="html: note"></span>
+        <!-- /ko -->
+
+    </div>
+    
+    <script type="text/javascript">
+        require(['jquery'], function($) {
+            'use strict';
+            
+            // Handle newsletter subscription when place order button is clicked
+            $(document).on('click', '[data-role="review-save"]', function(e) {
+                var newsletterCheckbox = $('[name="newsletter_subscribe"]');
+                if (newsletterCheckbox.length === 0) {
+                    newsletterCheckbox = $('#newsletter_subscribe');
+                }
+                if (newsletterCheckbox.length === 0) {
+                    newsletterCheckbox = $('.newsletter-subscribe-checkbox');
+                }
+                
+                var isChecked = newsletterCheckbox.length > 0 ? newsletterCheckbox.is(':checked') : false;
+                console.log('Newsletter subscription value during order placement:', isChecked);
+                
+                if (isChecked) {
+                    // Add hidden input to form
+                    var hiddenInput = $('<input>').attr({
+                        type: 'hidden',
+                        name: 'newsletter_subscribe',
+                        value: '1'
+                    });
+                    
+                    // Remove any existing hidden input
+                    $('input[name="newsletter_subscribe"][type="hidden"]').remove();
+                    
+                    // Add to form
+                    $('form[data-role="checkout-form"]').append(hiddenInput);
+                    console.log('Added newsletter subscription to form');
+                }
+            });
+            
+            // Also handle form submission
+            $(document).on('submit', 'form[data-role="checkout-form"]', function(e) {
+                var newsletterCheckbox = $('[name="newsletter_subscribe"]');
+                if (newsletterCheckbox.length === 0) {
+                    newsletterCheckbox = $('#newsletter_subscribe');
+                }
+                if (newsletterCheckbox.length === 0) {
+                    newsletterCheckbox = $('.newsletter-subscribe-checkbox');
+                }
+                
+                var isChecked = newsletterCheckbox.length > 0 ? newsletterCheckbox.is(':checked') : false;
+                
+                if (isChecked) {
+                    // Add hidden input to form
+                    var hiddenInput = $('<input>').attr({
+                        type: 'hidden',
+                        name: 'newsletter_subscribe',
+                        value: '1'
+                    });
+                    
+                    // Remove any existing hidden input
+                    $('input[name="newsletter_subscribe"][type="hidden"]').remove();
+                    
+                    // Add to form
+                    $(this).append(hiddenInput);
+                    console.log('Added newsletter subscription to form on submit');
+                }
+            });
+        });
+    </script>
+<!-- /ko --> 

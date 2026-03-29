@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="Magento_PageBuilder::js/resource/slick/slick.css"/>
+    </head>
+    <body>
+        <referenceBlock name="checkout.cart.crosssell">
+            <action method="setMaxItemCount">
+                <argument name="count" xsi:type="string">10</argument>
+            </action>
+            <block class="Magento\Framework\View\Element\RendererList" name="checkout.cart.crosssell.details.renderers" as="details.renderers">
+                <block class="Magento\Framework\View\Element\Template" name="simple.crosssell.renderer" as="simple"/>
+                <block class="Magento\Framework\View\Element\Template" name="default.crosssell.renderer" as="default"/>
+                <block class="Magento\Swatches\Block\Product\Renderer\Listing\Configurable" name="configurable.crosssell.swatch.renderer" as="configurable" template="Magento_Swatches::product/listing/renderer.phtml">
+                    <arguments>
+                        <argument name="configurable_view_model" xsi:type="object">Magento\Swatches\ViewModel\Product\Renderer\Configurable</argument>
+                    </arguments>
+                </block>
+            </block>
+        </referenceBlock>
+        <move element="checkout.cart.crosssell" destination="content" after="-"/>
+    </body>
+</page>

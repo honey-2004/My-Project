@@ -1,0 +1,4 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Email:etc/email_templates.xsd">
+    <template id="iovista_support_email_template" label="Support Form" file="support_form.html" type="html" module="Iovista_SupportForm" area="frontend"/>
+</config>

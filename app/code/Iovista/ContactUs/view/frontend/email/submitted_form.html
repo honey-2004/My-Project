@@ -1,0 +1,57 @@
+<!--@subject {{trans "Contact Form Details with Attachment"}} @-->
+<!--@vars {
+"var data.comment":"Comment",
+"var data.email":"Sender Email",
+"var data.fname":"Sender First Name",
+"var data.lname":"Sender Last Name",
+"var data.telephone":"Sender Telephone",
+"var data.attachment":"Sender Attachment"
+} @-->
+
+{{template config_path="design/email/header_template"}}
+
+<table class="message-details">
+    <tr>
+        <td><strong>{{trans "First Name"}}</strong></td>
+        <td>{{var data.fname}}</td>
+    </tr>
+    <tr>
+        <td><strong>{{trans "Last Name"}}</strong></td>
+        <td>{{var data.lname}}</td>
+    </tr>
+    <tr>
+        <td><strong>{{trans "Email"}}</strong></td>
+        <td>{{var data.email}}</td>
+    </tr>
+    <tr>
+        <td><strong>{{trans "Phone"}}</strong></td>
+        <td>{{var data.telephone}}</td>
+    </tr>
+    <tr>
+        <td><strong>{{trans "City"}}</strong></td>
+        <td>{{var data.city}}</td>
+    </tr>
+    <tr>
+        <td><strong>{{trans "State/Province"}}</strong></td>
+        <td>{{var data.state_province}}</td>
+    </tr>
+    <tr>
+        <td><strong>{{trans "Country"}}</strong></td>
+        <td>{{var data.country}}</td>
+    </tr>
+    <tr>
+        <td><strong>{{trans "Company"}}</strong></td>
+        <td>{{var data.company}}</td>
+    </tr>
+    <tr>
+        <td><strong>{{trans "Product of Interest"}}</strong></td>
+        <td>{{var data.product_of_interest}}</td>
+    </tr>
+    <tr>
+        <td><strong>{{trans "Please see the attachment."}}</strong></td>
+    </tr>
+</table>
+<p><strong>{{trans "Message"}}</strong></p>
+<p>{{var data.comment}}</p>
+
+{{template config_path="design/email/footer_template"}}

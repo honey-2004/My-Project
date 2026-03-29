@@ -1,0 +1,22 @@
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../lib/internal/Magento/Framework/ObjectManager/etc/config.xsd">
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="iovistablog_listing_data_source" xsi:type="string">Iovista\Blog\Model\ResourceModel\Post\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+    <virtualType name="Iovista\Blog\Model\ResourceModel\Post\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <!-- Table name to insert data and listing data -->
+            <argument name="mainTable" xsi:type="string">iovista_blog_post</argument>
+            <!-- Resource model name -->
+            <argument name="resourceModel" xsi:type="string">Iovista\Blog\Model\ResourceModel\Post</argument>
+        </arguments>
+    </virtualType>
+    <type name="Iovista\Blog\Model\Post\DataProvider">
+        <arguments>
+            <argument name="postCollectionFactory" xsi:type="object">Iovista\Blog\Model\ResourceModel\Post\CollectionFactory</argument>
+        </arguments>
+    </type>
+</config>

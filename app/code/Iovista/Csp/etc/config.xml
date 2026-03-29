@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <csp>
+            <policies>
+                <storefront_checkout_index_index>
+                    <scripts>
+                        <inline>1</inline>
+                    </scripts>
+                    <images>
+                        <inline>1</inline>
+                    </images>
+                </storefront_checkout_index_index>
+                <admin_sales_order_create_index>
+                    <scripts>
+                        <inline>1</inline>
+                    </scripts>
+                </admin_sales_order_create_index>
+            </policies>
+        </csp>
+    </default>
+</config>
